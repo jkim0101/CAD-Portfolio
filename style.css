@@ -13,6 +13,8 @@ body {
 header {
   padding: 60px 0 35px;
   border-bottom: 1px solid #ddd;
+  background: #003262;
+  color: white;
 }
 
 h1 {
