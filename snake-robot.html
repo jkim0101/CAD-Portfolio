@@ -33,22 +33,36 @@
     <h2>Overview</h2>
 
     <p>
-      Inspired by articulated robotic systems developed for difficult terrain,
-      I designed and built a modular snake robot using custom planetary gearing,
-      enclosed electronics, and rotating outer segments.
+      Inspired by JPL's robotic snake, which used rotating external spirals to maneuver across different terrain, 
+      I took on the challenge of developing my own version with the mentorship and guidance of Dr. Yoon at the 
+      University of Alabama. Publicly available videos revealed little about the robot's internal construction, 
+      so I developed my own internal architecture based on its observed motion.
+
+      This project was one of my first experiences designing a mechanical system with moving custom parts and 
+      taught me a lot about mechanism design, component selection, DFM/DFA, FDM tolerances, and physical 
+      prototyping.
     </p>
   </section>
 
   <section>
-    <h2>Design</h2>
+    <h2>Mechanical Design</h2>
 
     <p>
-      Add your design story here.
+      One of the main design challenges was allowing the external spiral to rotate while keeping the motors and 
+      electronics stationary inside the robot. I started with two geared motors provided by my mentor and researched 
+      different methods of transferring their rotation to the external body.
+
+      I developed a planetary-style gear system using the gear attached to the motor as the sun gear. This drove a 
+      separate planet gear mounted to the stationary internal structure, which then transferred rotation to an internally 
+      toothed ring gear connected to the external spiral.
+
+      This allowed the drivetrain and electronics to remain enclosed inside the robot while transferring rotation to the 
+      exterior segments.
     </p>
   </section>
 
   <section>
-    <h2>Prototyping & Manufacturing</h2>
+    <h2>Initial Prototype</h2>
 
     <p>
       Add your prototype and manufacturing story here.
