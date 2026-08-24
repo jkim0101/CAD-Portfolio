@@ -122,3 +122,20 @@ section {
   border-bottom: 2px solid #003262;
   padding-bottom: 8px;
 }
+
+.project-video {
+  display: block;
+  width: 100%;
+  max-width: 650px;
+  max-height: 450px;
+  margin: 25px auto 10px;
+  border-radius: 8px;
+}
+
+.media-caption {
+  max-width: 650px;
+  margin: 0 auto 25px;
+  color: #666;
+  font-size: 0.9rem;
+  text-align: center;
+}
