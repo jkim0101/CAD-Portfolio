@@ -33,40 +33,67 @@
     <h2>Overview</h2>
 
     <p>
-      Inspired by JPL's robotic snake, which used rotating external spirals to maneuver across different terrain, 
-      I took on the challenge of developing my own version with the mentorship and guidance of Dr. Yoon at the 
-      University of Alabama. Publicly available videos revealed little about the robot's internal construction, 
-      so I developed my own internal architecture based on its observed motion.<br><br>
+      I designed a liquid sealant injector for bicycles intended to create a commercial product that could both pressurize 
+      bike tires and insert liquid sealant. The system used a compressed-air reservoir to drive the sealant into the tire, 
+      while custom ball check valves controlled one-way airflow through the system. This required the design to account for 
+      internal pressure, sealing, airflow, sealant flow, assembly, and manufacturing constraints.<br><br>
       
-      This project was one of my first experiences designing a mechanical system with moving custom parts and 
-      taught me a lot about mechanism design, component selection, DFM/DFA, FDM tolerances, and physical 
-      prototyping.
+      I developed three major design iterations in SolidWorks, progressing from an initial concept to a multi-part assembly 
+      designed for easier manufacturing and assembly, and finally to a more integrated design focused on reducing weight, 
+      part count, and unnecessary components. I used solid mechanics and thermodynamics calculations to size the pressure 
+      vessel and valve components and compared several materials based on their mechanical properties and cost.
     </p>
   </section>
 
   <section>
-    <h2>Mechanical Design</h2>
+    <h2>Pressure Vessel & Material Selection</h2>
 
     <p>
-      One of the main design challenges was allowing the external spiral to rotate while keeping the motors and 
-      electronics stationary inside the robot. I started with two geared motors provided by my mentor and researched 
-      different methods of transferring their rotation to the external spiral.<br><br>
+      One of the main design challenges was sizing the compressed-air reservoir to contain approximately 30 mL of air at 
+      pressures up to 120 psi while minimizing unnecessary material.<br><br>
 
-      I developed a planetary-style gear system using the gear attached to the motor as the sun gear. This drove a 
-      separate planet gear mounted to the stationary internal structure, which then transferred rotation to an internally 
-      toothed ring gear connected to the external spiral.<br><br>
-
-      This allowed the drivetrain and electronics to remain enclosed inside the robot while transferring rotation to the 
-      exterior segments.
+      I used thin-walled pressure-vessel equations to estimate the hoop and longitudinal stresses in the cylindrical 
+      reservoir:
     </p>
+
+    <div class="equation">
+      σ<sub>h</sub> = Pr / t
+    </div>
+
+    <div class="equation">
+      σ<sub>l</sub> = Pr / 2t
+    </div>
+
+    <p>
+      where P is the internal pressure, r is the reservoir radius, and t is the wall thickness.<br><br>
+
+      Since the hoop stress is twice the longitudinal stress for the same geometry, it represented the more restrictive 
+      loading condition so I used that as my basis. I used these calculations to estimate the required wall thickness and 
+      compare the resulting stresses against candidate material yield strengths.<br><br>
+
+      I also performed a thermodynamic check using the ideal gas equation,
+    </p>
+
+    <div class="equation">
+      PV = nRT
+    </div>
+
+    <p>
+      to estimate the temperature associated with pressurization and make sure temperature would not become a limiting 
+      material constraint.<br><br>
+
+      I compared materials with readily available stock, including carbon steel, 4130 alloy steel, 304 and 316 stainless 
+      steel, and 6061 and 2024 aluminum, based on their mechanical properties and material cost.
+    </p>
+    
   </section>
 
   <section>
-    <h2>Initial Prototype</h2>
+    <h2>Custom Ball Check Valve</h2>
 
     <img
       class="project-image"
-      src="initial-gear.jpeg"
+      src="placeholder.jpg"
       alt="First design of internals with integrated 3D printed shaft"
     >
 
@@ -75,97 +102,145 @@
     </p>
 
     <p>
-      My initial design was manufactured using PLA FDM printing because it was inexpensive and allowed me to quickly 
-      manufacture custom geometry. However, the first physical prototype exposed several problems I had not accounted for 
-      in CAD.<br><br>
+      The injector used custom ball check valves to control one-way airflow through the pneumatic system. Each valve was 
+      designed around a 4 mm diameter orifice and a 5 mm ball, with a compression spring holding the ball against the 
+      valve seat until the pressure force was high enough to open it.<br><br>
 
-      The printed shafts did not consistently fit into their corresponding holes because I had not properly accounted for 
-      FDM dimensional tolerances. Support material also reduced the surface quality and dimensional accuracy of 
-      the underside of overhangs.<br><br>
-
-      The main tube body created another manufacturing issue. I originally designed it as a single component, which 
-      required a large amount of internal support material. Removing the supports took roughly 30 minutes and made 
-      manufacturing and assembly unnecessarily difficult.
+      I initially sized the spring using the pressure force acting on the ball and Hooke’s law:
     </p>
+
+    <div class="equation">
+      F<sub>P</sub> = PA
+    </div>
+
+    <div class="equation">
+      F<sub>S</sub> = kx
+    </div>
+
+    <p>At the target cracking condition:</p>
+
+    <div class="equation">
+      PA = kx
+    </div>
+
+    <p>
+      My first calculation resulted in approximately 2.09 mm of spring compression and led me to a spring with a rate near 
+      0.487 lbf/in. During a later design review, I identified an error in the original calculation and changed to a 
+      higher-rate spring with a smaller diameter that could fit between the 5 mm ball and 4 mm orifice without requiring 
+      the separate support disk used in the earlier design.<br><br>
+
+      The valve itself also went through several revisions. An early version used a separate disk beneath the ball to 
+      support the spring. I later separated the ball from the disk and added a recessed feature to locate it while allowing 
+      air to pass around the support. After further review, I eliminated the disk entirely by selecting a spring that could 
+      support the ball directly.
+    </p>
+    
   </section>
 
   <section>
-    <h2>Tolerancing and DFM</h2>
+    <h2>Design Iterations</h2>
+
+    <h3>Version 1 — Initial Architecture</h3>
 
     <p>
-      Instead of repeatedly changing dimensions and reprinting the entire assembly, I designed a test piece with different 
-      shaft and hole dimensions. I printed and tested the different combinations to determine clearances and press-fit 
-      dimensions that worked reliably with the printer, then incorporated those dimensions into later iterations.<br><br>
-
-      I also redesigned the main body from a single tube into two separate components. Splitting the geometry significantly 
-      reduced the amount of required support material, improved access to printed surfaces, and made the internal components 
-      much easier to assemble.
+      The first iteration established the basic architecture of the injector. It consisted primarily of the pressure 
+      reservoir with additional geometry for the spring-and-ball check-valve mechanisms. This version focused on 
+      establishing the required internal volume and packaging the major functional components.
     </p>
+
+    <h3>Version 2 — Manufacturing & Assembly</h3>
+    
+    <p>
+      For the second iteration, I separated the injector into multiple components and introduced threaded interfaces to 
+      simplify manufacturing and assembly.<br><br>
+
+      I considered using stock tube material for the pressure vessel with separately machined end caps, while the ball 
+      check valves became their own threaded components that could screw into the tank. Breaking the injector into 
+      individual parts made the internal components easier to install and allowed different manufacturing processes to be 
+      considered for each component.<br><br>
+
+      I initially used 3/8"-16 threads for the check-valve interfaces because they provided enough space for the 4 mm flow 
+      passage while still leaving room for an O-ring. I also added hex geometry to several components so standard wrenches 
+      could be used during assembly.
+    </p>
+
+    <h3>Version 3 — Part & Weight Reduction</h3>
+
+    <p>
+      For the third iteration, I focused on reducing part count and unnecessary material.<br><br>
+
+      I combined the tank tube and one end into a single component so the pressure vessel could be assembled from two 
+      primary tank parts instead of a tube with two separate end caps. I also shortened unnecessary threaded and hex 
+      sections while keeping the components removable and accessible for assembly.<br><br>
+
+      The later design used approximately 1 1/4"-12 threads between the main tank components, while the check-valve 
+      interfaces continued to use 3/8"-16 threads.
+    </p>
+    
   </section>
 
   <section>
-    <h2>Testing and Iteration</h2>
-
-    <video class="project-video" controls muted playsinline>
-      <source src="snake-robot-rev1.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-
-    <h3>Locomotion</h3>
+    <h2>O-Ring Sealing</h2>
 
     <p>
-      I initially manufactured and tested a single segment using an Arduino Uno R3 to control the motor. When powered, the 
-      segment primarily rotated in place instead of translating forward.<br><br>
+      As the threaded interfaces evolved, sealing became a separate design challenge. There was not enough space above and 
+      below the main cylinder interface for the originally planned O-rings, so I moved the tank seal to the cylindrical side 
+      surface.<br><br>
 
-      From this test, I determined that a second segment with external spirals oriented in the opposite direction was needed 
-      to counteract the rotation of the first segment. I added a second section and modified the controls so the two external 
-      spirals could rotate together while opposing each other's tendency to rotate the overall robot.
+      Rather than estimating groove dimensions, I selected standard SAE AS568 O-rings from McMaster-Carr and designed the 
+      glands using dimensions from the Parker O-Ring Handbook.<br><br>
+
+      For the main tank interface, I used a dash-024 O-ring with a static radial gland. For the ball check-valve interfaces, 
+      I used dash-014 O-rings with face-seal gland geometry.<br><br>
+
+      This allowed the sealing features to be based on standard O-ring sizing and gland recommendations rather than arbitrary 
+      CAD dimensions.
     </p>
 
-    <h3>Mechanical Friction</h3>
-
-    <img
-      class="project-image"
-      src="final-gear.jpeg"
-      alt="Final design of internals with bearings"
-    >
-
-    <p class="media-caption">
-      Final design of internals with bearings
-    </p>
-
-    <p>
-      The two-segment prototype still struggled to move as intended. Initially, I considered available motor torque and power 
-      as possible limitations, but manually rotating the external sections also required substantial force. This indicated 
-      that friction within the drivetrain was contributing to the problem.<br><br>
-
-      After researching methods for reducing friction at rotating interfaces, I redesigned the drivetrain to incorporate 
-      bearings and adjusted the surrounding geometry for the required fits. The bearing-supported iteration rotated 
-      substantially more smoothly by hand and allowed the drivetrain motions to operate as intended.
-    </p>
   </section>
   
   <section>
-    <h2>Final Design</h2>
+    <h2>Pump & Tire Interfaces</h2>
+    
+    <p>
+      The later design also incorporated interfaces for real bicycle and pump hardware.<br><br>
+
+      I measured an existing Presta adapter and found approximately 0.25 in of 5/16"-32 threading, then incorporated a 
+      matching female threaded interface into the injector. The opposite end included threaded geometry intended to connect 
+      to an electric pump.<br><br>
+
+      Designing around physical components rather than only nominal CAD dimensions helped define the final interface geometry, 
+      although later prototype testing showed that these features still required additional tolerancing.
+    </p>
+    
+  </section>
+
+  <section>
+    <h2>FDM Prototype & DFM</h2>
 
     <img
       class="exploded-image"
-      src="snake-exploded.jpg"
-      alt="Exploded view of final design"
+      src="placeholder.jpg"
+      alt="3D printed prototype"
     >
 
     <p class="media-caption">
-      Exploded view of the final design
+      PETG 3D printed prototype used to evaluate assembly and interference fit
     </p>
-    
-    <p>
-      Although the bearing-supported drivetrain significantly reduced mechanical resistance, the available motors still 
-      limited the robot's locomotion. Since I was constrained to the motors available for the project, I completed the 
-      remaining mechanical design around the improved drivetrain rather than continuing to redesign around the existing motors.<br><br>
 
-      The final CAD incorporated dedicated mounting for the Arduino and motor-control electronics while keeping the components 
-      enclosed within the robot. It also incorporated the manufacturing and assembly improvements developed through the 
-      physical prototypes, leaving the drivetrain architecture open to a future motor upgrade.
+    <p>
+      The final design was manufactured as a PETG FDM prototype to evaluate assembly and fit before moving toward the intended 
+      production manufacturing methods.<br><br>
+
+      The prototype exposed several issues that were not apparent from the CAD. Several threaded features required additional 
+      clearance, some printed threads fractured at their bases, and the threaded pump interface did not fit the mating hardware 
+      correctly. The tank O-ring also appeared too large for its interface, and the available BB-sized balls were slightly 
+      undersized relative to the selected springs, although the valve still appeared to seal.<br><br>
+
+      I completed my work on the project shortly after the prototype was produced, so I was not able to implement another 
+      physical iteration. Based on the prototype results, the next revision would require more deliberate thread tolerancing, 
+      stronger printed thread-root geometry, and additional verification of the O-ring and pump interfaces before pressure 
+      testing.
     </p>
   </section>
 
