@@ -142,18 +142,18 @@ section {
 
 .project-image {
   display: block;
-  width: 100%;
-  max-width: 500px;
-  max-height: 450px;
+  width: auto;
+  height: 300px;
+  max-width: 100%;
   object-fit: contain;
   margin: 25px auto 10px;
 }
 
 .exploded-image {
   display: block;
-  width: 100%;
-  max-width: 500px;
-  max-height: 450px;
+  width: auto;
+  height: 300px;
+  max-width: 100%;
   object-fit: contain;
   margin: 25px auto 10px;
 }
