@@ -157,3 +157,15 @@ section {
   margin: 30px auto 0;
   border-radius: 8px;
 }
+
+@media (max-width: 700px) {
+  .exploded-image {
+    display: block;
+    width: auto;
+    max-width: 90%;
+    height: auto;
+    max-height: 500px;
+    margin: 30px auto 0 auto;
+    object-fit: contain;
+  }
+}
