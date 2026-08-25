@@ -57,11 +57,11 @@
     </p>
 
     <div class="equation">
-      σ<sub>h</sub> = Pr / t
+      <i>σ</i><sub>h</sub> = <i>Pr</i> / <i>t</i>
     </div>
 
     <div class="equation">
-      σ<sub>l</sub> = Pr / 2t
+      <i>σ</i><sub>l</sub> = <i>Pr</i> / 2<i>t</i>
     </div>
 
     <p>
@@ -75,7 +75,7 @@
     </p>
 
     <div class="equation">
-      PV = nRT
+      <i>PV</i> = <i>nRT</i>
     </div>
 
     <p>
@@ -91,16 +91,6 @@
   <section>
     <h2>Custom Ball Check Valve</h2>
 
-    <img
-      class="project-image"
-      src="placeholder.jpg"
-      alt="First design of internals with integrated 3D printed shaft"
-    >
-
-    <p class="media-caption">
-      First design of internals with integrated 3D printed shaft
-    </p>
-
     <p>
       The injector used custom ball check valves to control one-way airflow through the pneumatic system. Each valve was 
       designed around a 4 mm diameter orifice and a 5 mm ball, with a compression spring holding the ball against the 
@@ -110,17 +100,17 @@
     </p>
 
     <div class="equation">
-      F<sub>P</sub> = PA
+      <i>F</i><sub>P</sub> = <i>PA</i>
     </div>
 
     <div class="equation">
-      F<sub>S</sub> = kx
+      <i>F</i><sub>S</sub> = <i>kx</i>
     </div>
 
     <p>At the target cracking condition:</p>
 
     <div class="equation">
-      PA = kx
+      <i>PA</i> = <i>kx</i>
     </div>
 
     <p>
@@ -142,6 +132,18 @@
 
     <h3>Version 1 — Initial Architecture</h3>
 
+    <div class="image-pair">
+      <div>
+        <img src="injectorV1.jpg" alt="Version 1 full assembly">
+        <p class="media-caption">Version 1 full assembly</p>
+      </div>
+
+      <div>
+        <img src="injectorV1Section.jpg" alt="Version 1 section view">
+        <p class="media-caption">Version 1 section view showing the internal components</p>
+      </div>
+    </div>
+
     <p>
       The first iteration established the basic architecture of the injector. It consisted primarily of the pressure 
       reservoir with additional geometry for the spring-and-ball check-valve mechanisms. This version focused on 
@@ -149,6 +151,18 @@
     </p>
 
     <h3>Version 2 — Manufacturing & Assembly</h3>
+
+    <div class="image-pair">
+      <div>
+        <img src="injectorV2.jpg" alt="Version 2 full assembly">
+        <p class="media-caption">Version 2 full assembly</p>
+      </div>
+
+      <div>
+        <img src="injectorV2Section.jpg" alt="Version 2 section view">
+        <p class="media-caption">Version 2 section view showing the internal components</p>
+      </div>
+    </div>
     
     <p>
       For the second iteration, I separated the injector into multiple components and introduced threaded interfaces to 
@@ -165,6 +179,18 @@
     </p>
 
     <h3>Version 3 — Part & Weight Reduction</h3>
+
+    <div class="image-pair">
+      <div>
+        <img src="injectorV3.jpg" alt="Version 3 full assembly">
+        <p class="media-caption">Version 3 full assembly</p>
+      </div>
+
+      <div>
+        <img src="injectorV3Section.jpg" alt="Version 3 section view">
+        <p class="media-caption">Version 3 section view showing the internal components</p>
+      </div>
+    </div>
 
     <p>
       For the third iteration, I focused on reducing part count and unnecessary material.<br><br>
@@ -219,8 +245,8 @@
     <h2>FDM Prototype & DFM</h2>
 
     <img
-      class="exploded-image"
-      src="placeholder.jpg"
+      class="project-image"
+      src="injector3Dprint.jpg"
       alt="3D printed prototype"
     >
 
@@ -245,17 +271,64 @@
   </section>
 
   <section>
+    <h2>Simulation Cross-Check</h2>
+
+    <img
+      class="exploded-image"
+      src="InjectorSim.jpg"
+      alt="Sealant Injector Simulation"
+    >
+
+    <p class="media-caption">
+      SolidWorks Simulation static study investigation
+    </p>
+
+    <p>
+      I also investigated SolidWorks Simulation as an additional structural check for the pressure vessel.<br><br>
+
+      The predicted factors of safety were below 1 across all of the candidate materials and were inconsistent with my 
+      analytical pressure-vessel calculations. Because I could not confidently explain the discrepancy or validate the 
+      simulation setup, I did not use the FEA results to justify the final geometry or material selection.<br><br>
+
+      Instead, I relied primarily on the first-principles pressure-vessel calculations for structural sizing.
+    </p>
+  </section>
+
+  <section>
+    <h2>Final Design</h2>
+
+    <p>
+      The final design combined the compressed-air reservoir, custom ball check valves, threaded pump and valve interfaces, 
+      standard O-ring seals, and wrench-accessible assembly features into a compact mechanical system.<br><br>
+
+      Across three major iterations, the injector progressed from basic functional packaging to a multi-part manufacturable 
+      architecture and finally toward lower part count, reduced material, and easier assembly. The final PETG prototype 
+      identified thread tolerancing and interface fit as the major areas requiring another iteration before assembly and 
+      pressure testing.<br><br>
+
+      If continuing the project, my next step would be to incorporate these tolerance changes, manufacture another prototype, 
+      verify complete assembly, and then proceed to controlled pressure and valve testing.
+    </p>
+  </section>
+  
+  <section>
     <h2>What I Learned</h2>
 
     <p>
-      This project changed how I approached CAD by showing me that geometry that works on a computer does not necessarily 
-      manufacture, assemble, or operate as expected. Through each physical prototype, I learned to account for FDM tolerances, 
-      support accessibility, component fits, friction, and assembly earlier in the design process rather than addressing them 
-      after manufacturing.<br><br>
+      This project was one of my first experiences designing a mechanical system where pressure, sealing, manufacturing, and 
+      assembly all had to be considered together. I learned to use first-principles calculations to guide design decisions, 
+      from sizing a pressure vessel to selecting a spring for a target valve behavior, rather than relying only on CAD and 
+      simulation.<br><br>
 
-      It also gave me my first experience developing a mechanical system from observed behavior rather than an existing design, 
-      requiring me to research mechanisms and develop my own solution for transferring motion from an enclosed motor to the 
-      rotating external sections.
+      The design iterations also showed me how much manufacturing and assembly can change an initial concept. Features such as 
+      threads, O-ring glands, wrench access, and part count became major design considerations as the injector developed. The 
+      PETG prototype further showed that nominal CAD dimensions do not necessarily translate directly to physical parts, 
+      particularly for FDM threads and mating interfaces.<br><br>
+
+      I also learned not to automatically trust simulation results. When my SolidWorks Simulation results disagreed significantly 
+      with my analytical pressure-vessel calculations, I could not confidently validate the simulation setup and chose not to use 
+      those results to justify the design. This reinforced the importance of using first-principles calculations as a sanity 
+      check for computational analysis.
     </p>
   </section>
 
