@@ -25,7 +25,7 @@
 
   <img
     class="hero-image"
-    src="aeroSAE.jpg"
+    src="2026ASAE.jpg"
     alt="Aero SAE 2026 Aircraft"
   >
 
@@ -33,139 +33,169 @@
     <h2>Overview</h2>
 
     <p>
-      Inspired by JPL's robotic snake, which used rotating external spirals to maneuver across different terrain, 
-      I took on the challenge of developing my own version with the mentorship and guidance of Dr. Yoon at the 
-      University of Alabama. Publicly available videos revealed little about the robot's internal construction, 
-      so I developed my own internal architecture based on its observed motion.<br><br>
+      As a member of Berkeley's SAE Aero Design team, I have worked on the design, manufacturing, and assembly of the 
+      aircraft fuselage, wings, and tail, and currently serve as Fuselage & Tail Lead. My work has included designing 
+      structural components and manufacturing tooling in SolidWorks, performing structural analysis in ANSYS, fabricating 
+      aircraft components, and helping assemble the completed aircraft.<br><br>
       
-      This project was one of my first experiences designing a mechanical system with moving custom parts and 
-      taught me a lot about mechanism design, component selection, DFM/DFA, FDM tolerances, and physical 
-      prototyping.
+      Because the aircraft is developed by a large team, much of my work has focused not only on individual components but 
+      also on how designs are manufactured, assembled, and communicated between members. Several of my contributions came 
+      from identifying problems with previous manufacturing methods and developing simpler or more repeatable approaches.
     </p>
   </section>
 
   <section>
-    <h2>Mechanical Design</h2>
-
-    <p>
-      One of the main design challenges was allowing the external spiral to rotate while keeping the motors and 
-      electronics stationary inside the robot. I started with two geared motors provided by my mentor and researched 
-      different methods of transferring their rotation to the external spiral.<br><br>
-
-      I developed a planetary-style gear system using the gear attached to the motor as the sun gear. This drove a 
-      separate planet gear mounted to the stationary internal structure, which then transferred rotation to an internally 
-      toothed ring gear connected to the external spiral.<br><br>
-
-      This allowed the drivetrain and electronics to remain enclosed inside the robot while transferring rotation to the 
-      exterior segments.
-    </p>
-  </section>
-
-  <section>
-    <h2>Initial Prototype</h2>
+    <h2>Wing Assembly Tooling</h2>
 
     <img
       class="project-image"
-      src="initial-gear.jpeg"
-      alt="First design of internals with integrated 3D printed shaft"
+      src="initialJigs.jpg"
+      alt="Previous jigs for wing ribs"
     >
 
     <p class="media-caption">
-      First design of internals with integrated 3D printed shaft
+      The previous jigs for the wing ribs
     </p>
 
     <p>
-      My initial design was manufactured using PLA FDM printing because it was inexpensive and allowed me to quickly 
-      manufacture custom geometry. However, the first physical prototype exposed several problems I had not accounted for 
-      in CAD.<br><br>
+      The team's previous wing manufacturing process required approximately 20 individual FDM-printed jigs to position the 
+      ribs during assembly. Producing a complete set took several days, and the thin printed features made the jigs 
+      susceptible to breaking.<br><br>
 
-      The printed shafts did not consistently fit into their corresponding holes because I had not properly accounted for 
-      FDM dimensional tolerances. Support material also reduced the surface quality and dimensional accuracy of 
-      the underside of overhangs.<br><br>
+      I redesigned the tooling as a single laser-cut fixture that located multiple ribs relative to each other 
+      simultaneously. The new fixture could be manufactured in minutes rather than days and provided a common reference for 
+      rib alignment during assembly.
 
-      The main tube body created another manufacturing issue. I originally designed it as a single component, which 
-      required a large amount of internal support material. Removing the supports took roughly 30 minutes and made 
-      manufacturing and assembly unnecessarily difficult.
     </p>
-  </section>
-
-  <section>
-    <h2>Tolerancing and DFM</h2>
-
-    <p>
-      Instead of repeatedly changing dimensions and reprinting the entire assembly, I designed a test piece with different 
-      shaft and hole dimensions. I printed and tested the different combinations to determine clearances and press-fit 
-      dimensions that worked reliably with the printer, then incorporated those dimensions into later iterations.<br><br>
-
-      I also redesigned the main body from a single tube into two separate components. Splitting the geometry significantly 
-      reduced the amount of required support material, improved access to printed surfaces, and made the internal components 
-      much easier to assemble.
-    </p>
-  </section>
-
-  <section>
-    <h2>Testing and Iteration</h2>
-
-    <video class="project-video" controls muted playsinline>
-      <source src="snake-robot-rev1.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-
-    <h3>Locomotion</h3>
-
-    <p>
-      I initially manufactured and tested a single segment using an Arduino Uno R3 to control the motor. When powered, the 
-      segment primarily rotated in place instead of translating forward.<br><br>
-
-      From this test, I determined that a second segment with external spirals oriented in the opposite direction was needed 
-      to counteract the rotation of the first segment. I added a second section and modified the controls so the two external 
-      spirals could rotate together while opposing each other's tendency to rotate the overall robot.
-    </p>
-
-    <h3>Mechanical Friction</h3>
 
     <img
       class="project-image"
-      src="final-gear.jpeg"
-      alt="Final design of internals with bearings"
+      src="newJigs.jpg"
+      alt="New jigs for wing ribs"
     >
 
     <p class="media-caption">
-      Final design of internals with bearings
+      The new laser-cut jigs for the wing ribs
+    </p>
+    
+  </section>
+
+  <section>
+    <h2>Aircraft Manufacturing & Assembly</h2>
+
+    <p>
+      A large part of my work on Aero has involved manufacturing and assembling the physical aircraft. I had a major role in 
+      constructing the wings, including assembling the spars and ribs and using manufacturing fixtures to maintain alignment 
+      throughout the build. I also manufactured and assembled fuselage components and built the structures used to secure the 
+      aircraft's 2-liter bottle payload.
+    </p>
+
+    <img
+      class="project-image"
+      src="wingAssembly.jpg"
+      alt="Wing Assembly"
+    >
+
+    <p class="media-caption">
+      The main wing during manufacturing and assembly in 2026
+    </p>
+
+    <img
+      class="project-image"
+      src="payloadHolder.jpg"
+      alt="Payload Holder"
+    >
+
+    <p class="media-caption">
+      The 2026 payload holder integrated with the aircraft holding bottles
     </p>
 
     <p>
-      The two-segment prototype still struggled to move as intended. Initially, I considered available motor torque and power 
-      as possible limitations, but manually rotating the external sections also required substantial force. This indicated 
-      that friction within the drivetrain was contributing to the problem.<br><br>
+      For the fuselage, I helped lead the assembly of the formers and bulkheads after the member who originally designed the 
+      structure graduated. Before he left, I spent time observing the assembly process and asking questions about the design 
+      and manufacturing approach so that I understood how the structure was intended to go together. I was then able to 
+      carry that knowledge into the following build and help guide other members through the assembly.<br><br>
 
-      After researching methods for reducing friction at rotating interfaces, I redesigned the drivetrain to incorporate 
-      bearings and adjusted the surrounding geometry for the required fits. The bearing-supported iteration rotated 
-      substantially more smoothly by hand and allowed the drivetrain motions to operate as intended.
+      I also designed and FDM-manufactured the aircraft nosecone in SolidWorks and supported the fabrication and assembly of 
+      additional aircraft components.
     </p>
+
+    <img
+      class="project-image"
+      src="nosecone.jpg"
+      alt="Nosecone"
+    >
+
+    <p class="media-caption">
+      The nosecone for the 2026 aircraft
+    </p>
+    
+  </section>
+
+  <section>
+    <h2>Structural Analysis</h2>
+
+    <p>
+      I also began applying ANSYS Mechanical to evaluate the aircraft's primary structures. For the main wing spar, which 
+      used a built-up I-beam geometry, I created a structural model incorporating gravity and a remote load representing 
+      loading applied through the wing.<br><br>
+
+      I used the model to evaluate the resulting stress and deflection of the spar and gain experience defining loads, 
+      constraints, and material properties for aircraft structures.
+    </p>
+
+    <img
+      class="project-image"
+      src="MainSparFOS.jpg"
+      alt="Main Spar FoS FEA Simulation"
+    >
+
+    <p class="media-caption">
+      FEA simulation of the 2026 aircraft's main spar showing Factor of Safety
+    </p>
+    
+  </section>
+
+  <section>
+    <h2>Improving the Manufacturing Process</h2>
+
+    <p>
+      Working on the previous aircraft also exposed several areas where the team's process could be improved. Material 
+      quantities were not always clearly defined early in the design process, contributing to approximately a month of delay 
+      in finalizing and receiving wood, while incomplete communication of design intent also contributed to errors during 
+      assembly.<br><br>
+
+      As Fuselage & Tail Lead, I introduced BOMs, ballooned drawings, and exploded assembly views into the team's design 
+      process to define material quantities earlier and more clearly communicate how components should be manufactured and 
+      assembled.<br><br>
+
+      I have also trained more than 10 team members to create and use these practices so that the process can be applied 
+      throughout the team's designs rather than remaining dependent on individual members.
+    </p>
+
   </section>
   
   <section>
-    <h2>Final Design</h2>
-
-    <img
-      class="exploded-image"
-      src="snake-exploded.jpg"
-      alt="Exploded view of final design"
-    >
-
-    <p class="media-caption">
-      Exploded view of the final design
-    </p>
+    <h2>Current Work as Fuselage & Tail Lead</h2>
     
     <p>
-      Although the bearing-supported drivetrain significantly reduced mechanical resistance, the available motors still 
-      limited the robot's locomotion. Since I was constrained to the motors available for the project, I completed the 
-      remaining mechanical design around the improved drivetrain rather than continuing to redesign around the existing motors.<br><br>
+      As Fuselage & Tail Lead, I am currently working with other members on the structural layout and manufacturing approach 
+      for the next aircraft while coordinating the design and manufacturing of the fuselage and tail structures.<br><br>
 
-      The final CAD incorporated dedicated mounting for the Arduino and motor-control electronics while keeping the components 
-      enclosed within the robot. It also incorporated the manufacturing and assembly improvements developed through the 
-      physical prototypes, leaving the drivetrain architecture open to a future motor upgrade.
+      One area I want to improve is the structural analysis used to guide weight reduction. Last year's aircraft was 
+      structurally conservative in several areas, and I saw an opportunity to better understand where material could be 
+      removed without compromising structural performance. We modeled balsa as an orthotropic material in ANSYS, but I want 
+      to research and develop more representative values for its direction-dependent mechanical properties so that the 
+      analysis better reflects the wood we actually use.<br><br>
+
+      I also plan to build on my previous spar analysis by comparing FEA predictions against first-principles structural 
+      calculations and physical testing where possible. With greater confidence in the material properties and structural 
+      models, I want to use the analysis to guide material removal and structural geometry rather than relying primarily on 
+      conservative sizing.<br><br>
+
+      As the current aircraft progresses, I am also incorporating BOMs, manufacturing drawings, and assembly documentation 
+      earlier in the design process so that material requirements and manufacturing constraints are defined before 
+      fabrication begins.
     </p>
   </section>
 
@@ -173,14 +203,19 @@
     <h2>What I Learned</h2>
 
     <p>
-      This project changed how I approached CAD by showing me that geometry that works on a computer does not necessarily 
-      manufacture, assemble, or operate as expected. Through each physical prototype, I learned to account for FDM tolerances, 
-      support accessibility, component fits, friction, and assembly earlier in the design process rather than addressing them 
-      after manufacturing.<br><br>
+      Aero SAE has been less about learning individual CAD or analysis tools and more about applying engineering skills within 
+      a larger team and manufacturing environment. Building and assembling components designed by other members showed me how 
+      important it is for design and assembly intent to remain understandable beyond the person who originally created the CAD, 
+      especially as members graduate and responsibilities change.<br><br>
 
-      It also gave me my first experience developing a mechanical system from observed behavior rather than an existing design, 
-      requiring me to research mechanisms and develop my own solution for transferring motion from an enclosed motor to the 
-      rotating external sections.
+      I also learned that improving a design or manufacturing process does not always require a complicated solution. Replacing 
+      approximately 20 FDM-printed wing jigs with a single laser-cut fixture was a relatively simple design change, but it 
+      reduced manufacturing time from days to minutes while making the assembly process more repeatable.<br><br>
+
+      As I moved into a lead role, my focus expanded beyond the components I personally design. I now have to consider whether 
+      another member can understand a design, determine what material is required, manufacture it correctly, and assemble it 
+      without relying on the original designer being present. This has pushed me to improve the team's use of BOMs, drawings, 
+      and assembly documentation and to think about how design decisions affect the entire manufacturing process.
     </p>
   </section>
 
